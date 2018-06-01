@@ -1,5 +1,5 @@
 import {TreeNode} from './TreeNode'
-type LoopCallback<T> = (data: any, index?: number) => void
+type LoopCallback<T> = (data: T, index?: number) => void
 export class BinaryTree<T> {
     root: TreeNode<T> = null
     get length () : number {
@@ -39,7 +39,7 @@ export class BinaryTree<T> {
     constructor (root: TreeNode<T>) {
         this.root = root
     }
-    forEachByLevel (cb: (data: any, index: number, level: number) => void) {
+    forEachByLevel (cb: (data: T, index: number, level: number) => void) {
         let level = 0
         let idx = 0
         let cur: TreeNode<T>[] = [this.root]

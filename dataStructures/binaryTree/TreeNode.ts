@@ -2,8 +2,8 @@ export class TreeNode<T> {
     leftChild: TreeNode<T> = null
     rightChild: TreeNode<T> = null
     parent: TreeNode<T> = null
-    data: any = null
-    constructor (data?: any) {
+    data: T = null
+    constructor (data?: T) {
         this.data = data
     }
     insertLeft (node: TreeNode<T>) : TreeNode<T> {
