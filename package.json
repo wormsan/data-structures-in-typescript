@@ -1,0 +1,23 @@
+{
+  "name": "data-structure-in-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JALBAA/data-structure-in-typescript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JALBAA/data-structure-in-typescript/issues"
+  },
+  "homepage": "https://github.com/JALBAA/data-structure-in-typescript#readme",
+  "devDependencies": {
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
+  }
+}
