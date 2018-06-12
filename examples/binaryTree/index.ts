@@ -23,4 +23,3 @@ tree.forEachByLevel((data, idx, level) => {
 console.log(tree.width)
 console.log(tree.depth)
 console.log(tree.length)
-

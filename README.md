@@ -8,7 +8,7 @@
 - [ ] openHashTable
 - [x] binaryTree 
 - [ ] AVLTree
-- [ ] heap
+- [x] heap
 - [ ] pqueue
 - [ ] tableGraph
 - [ ] matrixGraph

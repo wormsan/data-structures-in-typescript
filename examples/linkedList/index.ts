@@ -21,3 +21,5 @@ console.log(list.length)
 list.forEach((data, index) => {
     console.log(data , index)
 })
+
+list.pop()
