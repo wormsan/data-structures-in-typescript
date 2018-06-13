@@ -10,6 +10,7 @@ export type Compare<T> = (v1: T | null, v2: T | null) => number
 export class AVLNode<T> extends TreeNode<T> {
     leftChild: AVLNode<T> | null = null
     rightChild: AVLNode<T> | null = null
+    parent: AVLNode<T> | null = null
     hidden: number = 0
     factor: AVLBalance = AVLBalance.BALANCED
 }
@@ -43,9 +44,40 @@ export class AVLTree<T> extends BinaryTree<T> {
         if (node.leftChild && node.leftChild.factor == AVLBalance.LEFT_HEAVY) {
             const left = node.leftChild
             // ll
-            node.leftChild = node.leftChild.rightChild
-            left.rightChild = node
+            /*
+        1.
+                    parent
+                node
+            left     
+        ll      lr
+        
+        2.
+                    parent
+                node
+            lr
             
+            left
+        ll
+            
+        3.
+            left    parent
+        ll      node
+            lr
+        
+        4.
+                parent
+            left
+        ll      node
+            lr
+            */
+            node.leftChild = node.leftChild.rightChild
+            if (node.leftChild && node.leftChild.rightChild)
+                node.leftChild.rightChild.parent = node.leftChild
+            left.rightChild = node
+            if (!node.parent) {
+                this.root = left
+            }
+            node.parent = left
         } else if (node.leftChild && node.leftChild.rightChild) {
             // lr
             const grandChild = node.leftChild.rightChild
@@ -71,7 +103,9 @@ export class AVLTree<T> extends BinaryTree<T> {
                     node.factor = AVLBalance.LEFT_HEAVY
                     this.insert(node, parent.leftChild)
                 } else {
+                    // console.log('222',node, parent)
                     parent.insertLeft(node)
+                    node.parent = parent
                     this.balance = false
                 }
             } else if (cmpval > 0) {
@@ -79,6 +113,7 @@ export class AVLTree<T> extends BinaryTree<T> {
                 if (parent.rightChild) {
                     this.insert(node, parent.rightChild)
                 } else {
+                    node.parent = parent
                     parent.insertRight(node)
                 }
             } else {
@@ -89,8 +124,8 @@ export class AVLTree<T> extends BinaryTree<T> {
         if (!this.balance && parent) {
             switch (parent.factor) {
                 case AVLBalance.LEFT_HEAVY:
-                    this.balance = true
                     this.rotate_left(parent)
+                    this.balance = true
                 break
                 case AVLBalance.BALANCED:
                     parent.factor = AVLBalance.LEFT_HEAVY
@@ -109,4 +144,12 @@ let tree = new AVLTree(root)
 
 tree.insert(25)
 
-console.log(tree)
+tree.insert(15)
+
+tree.insert(12)
+
+// console.log(tree)
+
+tree.forEachPreOrder((data, idx) => {
+    console.log(data, idx)
+})

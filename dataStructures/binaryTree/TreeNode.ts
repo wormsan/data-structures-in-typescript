@@ -9,25 +9,25 @@ export class TreeNode<T> {
     }
     insertLeft (node: TreeNode<T>) : TreeNode<T> {
         this.leftChild = node
-        node.parent = this
+        // node.parent = this
         return node
     }
     insertRight (node: TreeNode<T>) : TreeNode<T> {
         this.rightChild = node
-        node.parent = this
+        // node.parent = this
         return node
     }
     removeLeft () : TreeNode<T> | null {
         const temp = this.leftChild
         if (!temp) return null
-        temp.parent = null
+        // temp.parent = null
         this.leftChild = null
         return temp
     }
     removeRight () : TreeNode<T> | null {
         const temp = this.rightChild
         if (!temp) return null
-        temp.parent = null
+        // temp.parent = null
         this.rightChild = null
         return temp
     }

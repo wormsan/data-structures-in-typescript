@@ -71,6 +71,7 @@ export class BinaryTree<T> {
         let idx = 0
         function rec (node: TreeNode<T>) {
             cb(node.data, idx)
+            idx++
             if (node.leftChild) {
                 rec(node.leftChild)
             }
@@ -91,6 +92,7 @@ export class BinaryTree<T> {
                 rec(node.rightChild)
             }
             cb(node.data, idx)
+            idx++
         }
         if (this.root != null)
             rec(this.root)
@@ -102,6 +104,7 @@ export class BinaryTree<T> {
                 rec(node.leftChild)
             }
             cb(node.data, idx)
+            idx++
             if (node.rightChild) {
                 rec(node.rightChild)
             }
