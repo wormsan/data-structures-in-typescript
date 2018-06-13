@@ -6,7 +6,7 @@ class Queue<T> {
     push (data: T) {
         this.container.push(data)
     }
-    shift () : T {
+    shift () : T | void {
         return this.container.shift()
     }
     peek () : T {

@@ -1,10 +1,11 @@
 export class TreeNode<T> {
-    leftChild: TreeNode<T> = null
-    rightChild: TreeNode<T> = null
-    parent: TreeNode<T> = null
-    data: T = null
+    leftChild: TreeNode<T> | null = null
+    rightChild: TreeNode<T> | null = null
+    parent: TreeNode<T> | null = null
+    data: T | null = null
     constructor (data?: T) {
-        this.data = data
+        if (data)
+            this.data = data
     }
     insertLeft (node: TreeNode<T>) : TreeNode<T> {
         this.leftChild = node
@@ -16,15 +17,17 @@ export class TreeNode<T> {
         node.parent = this
         return node
     }
-    removeLeft () : TreeNode<T> {
+    removeLeft () : TreeNode<T> | null {
         const temp = this.leftChild
-        this.leftChild.parent = null
+        if (!temp) return null
+        temp.parent = null
         this.leftChild = null
         return temp
     }
-    removeRight () : TreeNode<T> {
+    removeRight () : TreeNode<T> | null {
         const temp = this.rightChild
-        this.rightChild.parent = null
+        if (!temp) return null
+        temp.parent = null
         this.rightChild = null
         return temp
     }

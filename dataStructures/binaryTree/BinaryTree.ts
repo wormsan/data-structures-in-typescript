@@ -1,7 +1,7 @@
 import {TreeNode} from './TreeNode'
-type LoopCallback<T> = (data: T, index?: number) => void
+export type LoopCallback<T> = (data: T | null, index: number) => void
 export class BinaryTree<T> {
-    root: TreeNode<T> = null
+    root: TreeNode<T> | null = null
     get length () : number {
         let length = 0
         // traverse through root
@@ -39,7 +39,8 @@ export class BinaryTree<T> {
     constructor (root: TreeNode<T>) {
         this.root = root
     }
-    forEachByLevel (cb: (data: T, index: number, level: number) => void) {
+    forEachByLevel (cb: (data: T | null, index: number, level: number) => void) {
+        if (this.root == null) return
         let level = 0
         let idx = 0
         let cur: TreeNode<T>[] = [this.root]
@@ -77,7 +78,8 @@ export class BinaryTree<T> {
                 rec(node.rightChild)
             }
         }
-        rec(this.root)
+        if (this.root != null)
+            rec(this.root)
     }
     forEachPostOrder (cb: LoopCallback<T>) {
         let idx = 0
@@ -90,7 +92,8 @@ export class BinaryTree<T> {
             }
             cb(node.data, idx)
         }
-        rec(this.root)
+        if (this.root != null)
+            rec(this.root)
     }
     forEachInOrder (cb: LoopCallback<T>) {
         let idx = 0
@@ -103,7 +106,8 @@ export class BinaryTree<T> {
                 rec(node.rightChild)
             }
         }
-        rec(this.root)
+        if (this.root != null)
+            rec(this.root)
     }
     forEach (cb: LoopCallback<T>) {
         this.forEachByLevel((node, index) => cb(node, index))

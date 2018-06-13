@@ -16,7 +16,6 @@ list.push(third)
 
 // sec.removeNext()
 
-console.log(list.length)
 
 list.forEach((data, index) => {
     console.log(data , index)

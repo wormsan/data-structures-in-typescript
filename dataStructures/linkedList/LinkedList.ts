@@ -1,8 +1,7 @@
 import {ListNode} from './ListNode'
 export class LinkedList<T> {
-    protected head: ListNode<T>
-    protected tail: ListNode<T>
-    length: number = 0
+    protected head: ListNode<T> | null = null
+    protected tail: ListNode<T> | null = null
     forEach (cb: (data: any, index: number) => void) {
         let index = 0
         function traverse (node: ListNode<T> | null) {
@@ -16,38 +15,48 @@ export class LinkedList<T> {
     }
     push (node: ListNode<T> | T) {
         if (node instanceof ListNode) {
-            node.bindList(this)
             if (!this.head) {
                 this.head = node
                 this.tail = node
-                this.length++
-            } else {
+            } else if (this.tail) {
                 this.tail.setNext(node)
                 this.tail = node
             }
         } else {
-            throw new Error('the param expects LinkstNode<T> not T')
+            this.push(new ListNode(node))
         }
     }
-    pop () {
-        const tail = this.tail.prev
-        this.tail.prev.removeNext()
-        this.tail = tail
+    pop () : ListNode<T> | void {
+        if (this.tail) {
+            const newTail = this.tail.prev
+            if (newTail && newTail.prev) {
+                const returnNode = newTail.prev.removeNext()
+                this.tail = newTail
+                return returnNode
+            }
+        }
     }
-    unshift (node: ListNode<T>) {
-        node.bindList(this)
-        if (!this.head) {
-            this.head = node
-            this.tail = node
-            this.length++
+    unshift (node: ListNode<T> | T) {
+        if (node instanceof ListNode) {
+            if (!this.head) {
+                this.head = node
+                this.tail = node
+            } else {
+                this.head.setPrev(node)
+                this.head = node
+            }
         } else {
-            this.head.setPrev(node)
-            this.head = node
+            this.unshift(new ListNode(node))
         }
     }
-    shift () {
-        const head = this.head.next
-        this.head.next.removeBefore()
-        this.head = head
+    shift () : ListNode<T> | void {
+        if (this.head) {
+            const newHead = this.head.next
+            if (newHead && newHead.next) {
+                const returnNode = newHead.next.removeBefore()
+                this.head = newHead
+                return returnNode
+            }
+        }
     }
 }

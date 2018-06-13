@@ -6,8 +6,12 @@
 - [ ] linkedSet
 - [ ] linkedHashTable
 - [ ] openHashTable
-- [x] binaryTree 
+- [x] binaryTree
 - [ ] AVLTree
+- [ ] BTree
+- [ ] B+Tree
+- [ ] B*Tree
+- [ ] Trie
 - [x] heap
 - [ ] pqueue
 - [ ] tableGraph

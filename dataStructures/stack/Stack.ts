@@ -1,7 +1,7 @@
 import {LinkedList} from '../linkedList/LinkedList'
 import {ListNode} from '../linkedList/ListNode'
+// use linked list
 export class Stack<T> extends LinkedList<T> {
-    // use linked list
     constructor () {
         super()
     }
@@ -16,15 +16,19 @@ export class Stack<T> extends LinkedList<T> {
     unshift (node: ListNode<T>) {
         throw new Error('stack cannot unshift')
     }
-    shift () {
+    shift () : ListNode<T> {
         throw new Error('stack cannot shift')
     }
-    peek () : T {
-        return this.tail.data
+    peek () : T | null | void {
+        if (this.tail) {
+            return this.tail.data
+        }
     }
-    // or array
-    /*
-    container: T[] = []
+}
+// or array
+/*
+export class Stack<T> {
+    private container: T[] = []
     get length () {
         return this.container.length
     }
@@ -37,5 +41,5 @@ export class Stack<T> extends LinkedList<T> {
     peek () : T {
         return this.container[0]
     }
-    */
 }
+*/

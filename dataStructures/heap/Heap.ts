@@ -33,7 +33,7 @@ export class Heap<T> {
         }
         return result
     }
-    constructor (sortBy : string = 'big', compare: (v1: T, v2: T) => Boolean | null = null ) {
+    constructor (sortBy : string = 'big', compare?: (v1: T, v2: T) => Boolean ) {
         this.sortBy = sortBy
         if (compare) this.compare = compare
     }
@@ -56,7 +56,10 @@ export class Heap<T> {
     extract () : T {
         const last = this.tree[this.tree.length - 1]
         const top = this.tree[0]
-        this.tree[0] = this.tree.pop()
+        const poped = this.tree.pop()
+        if (poped) {
+            this.tree[0] = poped
+        }
         let i = 0
         let moveToPos = i
         while (i < this.tree.length) {
