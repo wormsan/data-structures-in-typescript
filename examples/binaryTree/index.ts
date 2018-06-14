@@ -14,6 +14,7 @@ const b = root.insertRight(new TreeNode(5))
 b.insertLeft(new TreeNode(19))
 b.insertRight(new TreeNode(2))
 
+
 const tree = new BinaryTree(root)
 
 tree.forEachByLevel((data, idx, level) => {
