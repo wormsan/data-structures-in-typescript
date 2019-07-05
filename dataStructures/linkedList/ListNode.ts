@@ -2,7 +2,7 @@ import {LinkedList} from './LinkedList'
 export class ListNode<T> {
     next: ListNode<T> | null = null
     prev: ListNode<T> | null = null
-    data: T | null = null
+    data?: T
     constructor (data: T) {
         this.data = data
     }

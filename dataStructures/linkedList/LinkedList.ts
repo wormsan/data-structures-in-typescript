@@ -1,17 +1,31 @@
 import {ListNode} from './ListNode'
 export class LinkedList<T> {
-    protected head: ListNode<T> | null = null
-    protected tail: ListNode<T> | null = null
-    forEach (cb: (data: any, index: number) => void) {
-        let index = 0
+    head: ListNode<T> | null = null
+    tail: ListNode<T> | null = null
+    isEmpty () {
+      return this.head ? true : false
+    }
+    forEach (cb: (data: T, index: number) => void) {
+        this.traverse((node, idx) => {
+          if (node.data !== undefined)
+            cb(node.data, idx)
+        })
+    }
+    traverse (cb: (node: ListNode<T>, index: number) => void) {
+      let index = 0
         function traverse (node: ListNode<T> | null) {
             if (node != null) {
-                cb(node.data, index)
+                cb(node, index)
                 index++
                 traverse(node.next)
             }
         }
         traverse(this.head)
+    }
+    getLength () {
+      let l = 0
+      this.traverse((_, idx) => {l = idx + 1})
+      return l
     }
     push (node: ListNode<T> | T) {
         if (node instanceof ListNode) {
