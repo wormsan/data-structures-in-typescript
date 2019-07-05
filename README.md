@@ -14,5 +14,5 @@
 - [ ] Trie
 - [x] heap
 - [ ] pqueue
-- [ ] tableGraph
+- [x] tableGraph
 - [ ] matrixGraph
